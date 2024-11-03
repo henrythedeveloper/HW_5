@@ -212,3 +212,20 @@ img:hover {
 #add_product_form input[text] {
     width: 15em;
 }
+
+.error {
+    border: 1px solid red;
+    padding: 1em;
+    margin-bottom: 1em;
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.error ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.error li {
+    margin-bottom: 0.5em;
+}

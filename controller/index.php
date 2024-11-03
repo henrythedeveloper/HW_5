@@ -43,7 +43,62 @@ switch ($action) {
         $hire_date = filter_input(INPUT_POST, 'hire_date');
         $job_code = filter_input(INPUT_POST, 'job_code');
 
-        // Validate inputs (additional validation can be added)
+        // Validate inputs
+        $error_messages = [];
+
+        if ($emp_num === null || $emp_num === false) {
+            $error_messages[] = "Employee Number must be a valid integer.";
+        }
+
+        if (empty($emp_lname)) {
+            $error_messages[] = "Last Name is required.";
+        }
+
+        if (empty($emp_fname)) {
+            $error_messages[] = "First Name is required.";
+        }
+
+        if (empty($emp_initial)) {
+            $error_messages[] = "Initial is required.";
+        } elseif (strlen($emp_initial) !== 1) {
+            $error_messages[] = "Initial must be exactly one character.";
+        }
+
+        if (empty($hire_date)) {
+            $error_messages[] = "Hire Date is required.";
+        }
+
+        if (empty($job_code)) {
+            $error_messages[] = "Job Code is required.";
+        }
+
+        // Check for duplicate Employee ID
+        if (employee_exists($emp_num)) {
+            $error_messages[] = "An employee with this Employee Number already exists.";
+        }
+
+        if (!empty($error_messages)) {
+            // Get the jobs list again for the form
+            $jobs = get_jobs();
+            include('../view/header.php');
+            include('../view/add_employee_form.php');
+            include('../view/footer.php');
+        } else {
+            // Add employee
+            $result = add_employee($emp_num, $emp_lname, $emp_fname, $emp_initial, $hire_date, $job_code);
+
+            if ($result === true) {
+                // Redirect to employee list
+                header('Location: index.php?action=list_employees');
+            } else {
+                // An error occurred during insertion
+                $error = "Error adding employee: " . $result;
+                include('../view/error.php');
+            }
+        }
+        break;
+
+        /*// Validate inputs (additional validation can be added)
         if ($emp_num && $emp_lname && $emp_fname && $emp_initial && $hire_date && $job_code) {
             // Add employee
             add_employee($emp_num, $emp_lname, $emp_fname, $emp_initial, $hire_date, $job_code);
@@ -54,7 +109,7 @@ switch ($action) {
             $error = "Invalid employee data. Check all fields and try again.";
             include('../view/error.php');
         }
-        break;
+        break;*/
 
     case 'show_update_form':
         $emp_num = filter_input(INPUT_GET, 'emp_num', FILTER_VALIDATE_INT);
@@ -79,7 +134,64 @@ switch ($action) {
         $hire_date = filter_input(INPUT_POST, 'hire_date');
         $job_code = filter_input(INPUT_POST, 'job_code');
 
-        // Validate inputs
+            // Validate inputs
+        $error_messages = [];
+
+        if ($emp_num === null || $emp_num === false) {
+            $error_messages[] = "Invalid Employee Number.";
+        }
+
+        if (empty($emp_lname)) {
+            $error_messages[] = "Last Name is required.";
+        }
+
+        if (empty($emp_fname)) {
+            $error_messages[] = "First Name is required.";
+        }
+
+        if (empty($emp_initial)) {
+            $error_messages[] = "Initial is required.";
+        } elseif (strlen($emp_initial) !== 1) {
+            $error_messages[] = "Initial must be exactly one character.";
+        }
+
+        if (empty($hire_date)) {
+            $error_messages[] = "Hire Date is required.";
+        }
+
+        if (empty($job_code)) {
+            $error_messages[] = "Job Code is required.";
+        }
+
+        if (!empty($error_messages)) {
+            // Get the jobs list again for the form
+            $employee = [
+                'EMP_NUM' => $emp_num,
+                'EMP_LNAME' => $emp_lname,
+                'EMP_FNAME' => $emp_fname,
+                'EMP_INITIAL' => $emp_initial,
+                'EMP_HIREDATE' => $hire_date,
+                'JOB_CODE' => $job_code
+            ];
+            $jobs = get_jobs();
+            include('../view/header.php');
+            include('../view/update_employee_form.php');
+            include('../view/footer.php');
+        } else {
+            // Update employee
+            $result = update_employee($emp_num, $emp_lname, $emp_fname, $emp_initial, $hire_date, $job_code);
+
+            if ($result === true) {
+                // Redirect to employee list
+                header('Location: index.php?action=list_employees');
+            } else {
+                // An error occurred during update
+                $error = "Error updating employee: " . $result;
+                include('../view/error.php');
+            }
+        }
+        break;
+        /*// Validate inputs
         if ($emp_num && $emp_lname && $emp_fname && $emp_initial && $hire_date && $job_code) {
             // Update employee
             update_employee($emp_num, $emp_lname, $emp_fname, $emp_initial, $hire_date, $job_code);
@@ -90,7 +202,7 @@ switch ($action) {
             $error = "Invalid employee data. Check all fields and try again.";
             include('../view/error.php');
         }
-        break;
+        break;*/
 
     case 'delete_employee':
         $emp_num = filter_input(INPUT_GET, 'emp_num', FILTER_VALIDATE_INT);

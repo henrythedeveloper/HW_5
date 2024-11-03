@@ -1,8 +1,22 @@
 <h2>Update Employee</h2>
+
+<?php if (!empty($error_messages)) : ?>
+    <div class="error">
+        <ul>
+            <?php foreach ($error_messages as $message) : ?>
+                <li><?php echo htmlspecialchars($message); ?></li>
+            <?php endforeach; ?>
+        </ul>
+    </div>
+<?php endif; ?>
+
 <form action="index.php" method="post">
     <input type="hidden" name="action" value="update_employee">
     <input type="hidden" name="emp_num" value="<?php echo htmlspecialchars($employee['EMP_NUM']); ?>">
-    
+
+    <label>Employee Number: </label>
+    <input type="number" name="emp_num_display" value="<?php echo htmlspecialchars($employee['EMP_NUM']); ?>" disabled><br>
+
     <label>Last Name:</label>
     <input type="text" name="emp_lname" value="<?php echo htmlspecialchars($employee['EMP_LNAME']); ?>" required><br>
 
@@ -23,6 +37,6 @@
             </option>
         <?php endforeach; ?>
     </select><br>
-    
+
     <input type="submit" value="Update Employee">
 </form>

@@ -29,22 +29,51 @@ function get_employee($emp_num) {
     return $employee;
 }
 
+function employee_exists($emp_num) {
+    $conn = get_db_connection();
+    $stmt = $conn->prepare("SELECT EMP_NUM FROM Employee WHERE EMP_NUM = ?");
+    $stmt->bind_param("i", $emp_num);
+    $stmt->execute();
+    $stmt->store_result();
+    $exists = $stmt->num_rows > 0;
+    $stmt->close();
+    $conn->close();
+    return $exists;
+}
+
+
 function add_employee($emp_num, $emp_lname, $emp_fname, $emp_initial, $hire_date, $job_code) {
     $conn = get_db_connection();
     $stmt = $conn->prepare("INSERT INTO Employee (EMP_NUM, EMP_LNAME, EMP_FNAME, EMP_INITIAL, EMP_HIREDATE, JOB_CODE) VALUES (?, ?, ?, ?, ?, ?)");
     $stmt->bind_param("isssss", $emp_num, $emp_lname, $emp_fname, $emp_initial, $hire_date, $job_code);
-    $stmt->execute();
-    $stmt->close();
-    $conn->close();
+
+    try {
+        $stmt->execute();
+        $stmt->close();
+        $conn->close();
+        return true;
+    } catch (mysqli_sql_exception $e) {
+        $stmt->close();
+        $conn->close();
+        return $e->getMessage();
+    }
 }
 
 function update_employee($emp_num, $emp_lname, $emp_fname, $emp_initial, $hire_date, $job_code) {
     $conn = get_db_connection();
     $stmt = $conn->prepare("UPDATE Employee SET EMP_LNAME = ?, EMP_FNAME = ?, EMP_INITIAL = ?, EMP_HIREDATE = ?, JOB_CODE = ? WHERE EMP_NUM = ?");
     $stmt->bind_param("sssssi", $emp_lname, $emp_fname, $emp_initial, $hire_date, $job_code, $emp_num);
-    $stmt->execute();
-    $stmt->close();
-    $conn->close();
+
+    try {
+        $stmt->execute();
+        $stmt->close();
+        $conn->close();
+        return true;
+    } catch (mysqli_sql_exception $e) {
+        $stmt->close();
+        $conn->close();
+        return $e->getMessage();
+    }
 }
 
 function delete_employee($emp_num) {
