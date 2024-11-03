@@ -1,3 +1,19 @@
+<?php
+/*
+ * view/header.php: Shared header for the Employee Manager application.
+ * 
+ * - Sets up the HTML document structure and includes CSS and JavaScript.
+ * - Provides navigation and branding elements.
+ * 
+ * Features:
+ *  - Includes the main stylesheet.
+ *  - Defines JavaScript functions for user interactions.
+ *  - Displays the application title and navigation icons.
+ * 
+ * Author: Henry Le
+ * Version: 20241103
+*/
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

@@ -1,4 +1,21 @@
 <?php
+/*
+* model/employee_db.php: Contains functions for interacting with the Employee table.
+* 
+* - Provides CRUD operations for employee records.
+* - Uses prepared statements to prevent SQL injection.
+* - Includes error handling for database operations.
+* 
+* Features:
+*  - get_employees_with_job(): Retrieves employees joined with their job details.
+*  - get_employee(): Fetches a single employee's data by Employee Number.
+*  - add_employee(): Adds a new employee to the database.
+*  - update_employee(): Updates an existing employee's details.
+*  - delete_employee(): Deletes an employee record.
+*  - employee_exists(): Checks if an employee with a given Employee Number exists.
+* 
+* Author: Henry Le
+*/
 require_once('db_connect.php');
 
 function get_employees_with_job() {

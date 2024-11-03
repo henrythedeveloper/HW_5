@@ -1,3 +1,19 @@
+<?php
+/*
+ * view/add_employee_form.php: Form for adding a new employee to the system.
+ * 
+ * - Collects employee details from the user.
+ * - Validates inputs and displays error messages if necessary.
+ * 
+ * Features:
+ *  - Displays error messages when validation fails.
+ *  - Preserves user input on form resubmission.
+ *  - Provides a dropdown list of job codes fetched from the database.
+ * 
+ * Author: Henry Le
+ * Version: 20241103
+*/
+?>
 <h2>Add Employee</h2>
 
 <?php if (!empty($error_messages)) : ?>

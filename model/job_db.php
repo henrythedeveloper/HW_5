@@ -1,4 +1,16 @@
 <?php
+/*
+* model/job_db.php: Contains functions for interacting with the Job table.
+* 
+* - Retrieves job codes and descriptions for use in forms.
+* - Uses prepared statements for secure database access.
+* 
+* Features:
+*  - get_jobs(): Fetches all job codes and their descriptions.
+* 
+* Author: Henry Le
+* Version: 20241103
+*/
 require_once('db_connect.php');
 
 function get_jobs() {

@@ -1,3 +1,19 @@
+<?php
+/*
+ * view/employee_list.php: Displays a list of employees in a table format.
+ * 
+ * - Shows employee details along with options to update or delete each record.
+ * - Provides a link to add a new employee.
+ * 
+ * Features:
+ *  - Iterates over the employees array to display each employee.
+ *  - Uses HTML table for structured data presentation.
+ *  - Includes action links with confirmation prompts for deletions.
+ * 
+ * Author: Henry Le
+ * Version: 20241103
+*/
+?>
 <h2>List of Employees</h2>
 <table>
     <tr>

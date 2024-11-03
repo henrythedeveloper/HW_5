@@ -1,27 +1,19 @@
 /* 
- * main.css: These sections focus on form and layout styling for the Employee Manager system.
+ * main.css: Stylesheet for the Employee Manager application's layout and forms.
  * 
- * - The input elements are styled for consistency in appearance and behavior. 
- * - Form fields, such as text inputs, dropdowns, and submit buttons, have custom styles 
- *   to enhance the user experience, including focus and hover states.
- * - Labels are styled to ensure clear identification of form fields.
- * - The layout is adjusted for centering content and styling specific sections like the form 
- *   container and top navigation area. The `.bodyForm` and `.top` classes manage form structure 
- *   and page layout.
- * - Images (such as icons) have custom filters for hover effects.
+ * - Defines styles for form elements, tables, and layout containers.
+ * - Enhances user experience with responsive design and visual feedback.
  * 
  * Features:
- *  - Flexbox is used to center content and manage layout.
- *  - Input fields have enhanced focus styles for accessibility and better user feedback.
- *  - Buttons and images provide feedback on hover to indicate interactivity.
+ *  - Uses Flexbox for layout centering and responsiveness.
+ *  - Styles input fields, buttons, and labels for consistency.
+ *  - Adds hover and focus effects for interactive elements.
+ *  - Styles error messages to stand out and be user-friendly.
  * 
  * Author: Henry Le
- * Version: 20241001 
+ * Version: 20241103
  */
-
-
-
-
+ 
 /* the styles for the html elements */
 html {
     background-color: rgb(192, 192, 192);

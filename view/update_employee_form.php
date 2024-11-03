@@ -1,3 +1,18 @@
+<?php
+/*
+ * view/update_employee_form.php: Form for updating an existing employee's details.
+ * 
+ * - Pre-fills the form with the employee's current data.
+ * - Validates inputs and displays error messages if necessary.
+ * 
+ * Features:
+ *  - Displays error messages when validation fails.
+ *  - Makes Employee Number read-only to prevent changes.
+ *  - Provides a dropdown list of job codes fetched from the database.
+ * 
+ * Author: Henry Le
+*/
+?>
 <h2>Update Employee</h2>
 
 <?php if (!empty($error_messages)) : ?>

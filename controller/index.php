@@ -1,4 +1,20 @@
 <?php
+/*
+* controller/index.php: Main controller handling all requests for the Employee Manager application.
+* 
+* - Determines the action based on request parameters.
+* - Coordinates between the model and view components.
+* - Implements input validation and error handling.
+* 
+* Features:
+*  - Handles actions like listing, adding, updating, and deleting employees.
+*  - Validates user inputs to ensure data integrity.
+*  - Utilizes model functions for database interactions.
+*  - Loads appropriate views based on the action.
+* 
+* Author: Henry Le
+* Version: 20241103
+*/
 // Start the session if needed
 session_start();
 
@@ -98,19 +114,6 @@ switch ($action) {
         }
         break;
 
-        /*// Validate inputs (additional validation can be added)
-        if ($emp_num && $emp_lname && $emp_fname && $emp_initial && $hire_date && $job_code) {
-            // Add employee
-            add_employee($emp_num, $emp_lname, $emp_fname, $emp_initial, $hire_date, $job_code);
-
-            // Redirect to employee list
-            header('Location: index.php?action=list_employees');
-        } else {
-            $error = "Invalid employee data. Check all fields and try again.";
-            include('../view/error.php');
-        }
-        break;*/
-
     case 'show_update_form':
         $emp_num = filter_input(INPUT_GET, 'emp_num', FILTER_VALIDATE_INT);
         if ($emp_num == NULL || $emp_num == FALSE) {
@@ -191,18 +194,6 @@ switch ($action) {
             }
         }
         break;
-        /*// Validate inputs
-        if ($emp_num && $emp_lname && $emp_fname && $emp_initial && $hire_date && $job_code) {
-            // Update employee
-            update_employee($emp_num, $emp_lname, $emp_fname, $emp_initial, $hire_date, $job_code);
-
-            // Redirect to employee list
-            header('Location: index.php?action=list_employees');
-        } else {
-            $error = "Invalid employee data. Check all fields and try again.";
-            include('../view/error.php');
-        }
-        break;*/
 
     case 'delete_employee':
         $emp_num = filter_input(INPUT_GET, 'emp_num', FILTER_VALIDATE_INT);

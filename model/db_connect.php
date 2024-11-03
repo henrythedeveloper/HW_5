@@ -1,4 +1,19 @@
 <?php
+/*
+* model/db_connect.php: Establishes and manages the database connection.
+* 
+* - Uses MySQLi extension with exception handling.
+* - Configures the connection for UTF-8 character encoding.
+* - Handles connection errors gracefully by displaying an error page.
+* 
+* Features:
+*  - Provides a reusable function to get the database connection.
+*  - Enables exceptions for better error handling.
+*  - Sets character encoding to support a wide range of characters.
+* 
+* Author: Henry Le
+* Version: 20241103
+*/
 function get_db_connection() {
     $servername = "localhost";
     $username = "employee_manager";
